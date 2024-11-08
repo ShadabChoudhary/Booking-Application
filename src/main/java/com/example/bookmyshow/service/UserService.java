@@ -1,6 +1,8 @@
 package com.example.bookmyshow.service;
 
+import com.example.bookmyshow.exceptions.InvalidCredentialsException;
 import com.example.bookmyshow.exceptions.UserAlreadyExistException;
+import com.example.bookmyshow.exceptions.UserNotFoundException;
 import com.example.bookmyshow.models.User;
 import com.example.bookmyshow.repositories.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -10,8 +12,8 @@ import java.util.Optional;
 
 @Service
 public class UserService {
-    UserRepository userRepository;
-    private BCryptPasswordEncoder passwordEncoder;
+    private UserRepository userRepository;
+    final BCryptPasswordEncoder passwordEncoder;
 
     public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
@@ -31,6 +33,21 @@ public class UserService {
             userRepository.save(user);
         }else{
             throw new UserAlreadyExistException("User Already Exist");
+        }
+        return user;
+    }
+
+    public User signIn(String username, String password) throws UserNotFoundException, InvalidCredentialsException {
+        Optional<User> userOptional = userRepository.findByEmail(username);
+
+        if(userOptional.isEmpty()){
+            throw new UserNotFoundException("No User found with this Email");
+        }
+
+        //if email already registered
+        User user = userOptional.get();
+        if(!passwordEncoder.matches(password, user.getPassword())){
+            throw  new InvalidCredentialsException("Email or Password is incorrect");
         }
         return user;
     }
