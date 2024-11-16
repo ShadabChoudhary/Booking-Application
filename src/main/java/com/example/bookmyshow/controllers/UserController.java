@@ -25,8 +25,10 @@ public class UserController {
                     signUpRequestDto.getPassword()
             );
             signUpResponseDto.setUser(user);
+            signUpResponseDto.setMessage("Sign up successful");
             signUpResponseDto.setResponseStatus(ResponseStatus.SUCCESS);
         }catch (Exception e){
+            signUpResponseDto.setMessage("Sign up failed");
             signUpResponseDto.setResponseStatus(ResponseStatus.FAILURE);
         }
 
@@ -39,8 +41,10 @@ public class UserController {
         try{
             User user = userService.signIn(signInRequestDto.getEmail(), signInRequestDto.getPassword());
             signInResponseDto.setUser(user);
+            signInResponseDto.setMessage("Sign in successful");
             signInResponseDto.setResponseStatus(ResponseStatus.SUCCESS);
         }catch (Exception e){
+            signInResponseDto.setMessage("Sign in failed");
             signInResponseDto.setResponseStatus(ResponseStatus.FAILURE);
         }
         return signInResponseDto;

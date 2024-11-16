@@ -48,8 +48,8 @@ public class BookMyShowApplication implements CommandLineRunner {
             try {
                 SignUpResponseDto signUpResponseDto = userController.signUpUser(requestDto);
                 System.out.println(signUpResponseDto.getMessage());
-            }catch (UserAlreadyExistException ue){
-                System.out.println("Error: "+ue.getMessage());
+            }catch (Exception e){
+                System.out.println("Error: "+e.getMessage());
             }
 
             //SignIn process
@@ -86,13 +86,14 @@ public class BookMyShowApplication implements CommandLineRunner {
                             break;
                         case 3:
                             exit = true;
+                            System.out.println("Exit");
                             break;
                         default:
                             System.out.println("Invalid Choice, Please try again");
                     }
                 }
-            }catch(InvalidCredentialsException ie){
-                throw new InvalidCredentialsException("Error: " + ie.getMessage());
+            }catch(Exception e){
+                throw new InvalidCredentialsException("Error: " + e.getMessage());
             }
 
         }catch (Exception e){

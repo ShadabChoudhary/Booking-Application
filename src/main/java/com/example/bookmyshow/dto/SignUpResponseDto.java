@@ -8,5 +8,6 @@ import lombok.Setter;
 @Setter
 public class SignUpResponseDto {
     private User user;
+    private String message;
     private ResponseStatus responseStatus;
 }
