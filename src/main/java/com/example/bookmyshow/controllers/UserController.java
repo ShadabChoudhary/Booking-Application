@@ -1,9 +1,6 @@
 package com.example.bookmyshow.controllers;
 
-import com.example.bookmyshow.dto.SignInRequestDto;
-import com.example.bookmyshow.dto.SignInResponseDto;
-import com.example.bookmyshow.dto.SignUpRequestDto;
-import com.example.bookmyshow.dto.SignUpResponseDto;
+import com.example.bookmyshow.dto.*;
 import com.example.bookmyshow.exceptions.InvalidCredentialsException;
 import com.example.bookmyshow.exceptions.UserAlreadyExistException;
 import com.example.bookmyshow.exceptions.UserNotFoundException;
@@ -19,27 +16,33 @@ public class UserController {
         this.userService = userService;
     }
 
-    public SignUpResponseDto signUpUser(SignUpRequestDto signUpRequestDto) throws UserAlreadyExistException {
-        User user = userService.signUp(
-                signUpRequestDto.getName(),
-                signUpRequestDto.getEmail(),
-                signUpRequestDto.getPassword()
-        );
-
+    public SignUpResponseDto signUpUser(SignUpRequestDto signUpRequestDto){
         SignUpResponseDto signUpResponseDto = new SignUpResponseDto();
-        signUpResponseDto.setUser(user);
-        signUpResponseDto.setMessage("Successfully registered!");
+        try{
+            User user = userService.signUp(
+                    signUpRequestDto.getName(),
+                    signUpRequestDto.getEmail(),
+                    signUpRequestDto.getPassword()
+            );
+            signUpResponseDto.setUser(user);
+            signUpResponseDto.setResponseStatus(ResponseStatus.SUCCESS);
+        }catch (Exception e){
+            signUpResponseDto.setResponseStatus(ResponseStatus.FAILURE);
+        }
+
         return signUpResponseDto;
     }
 
-    public SignInResponseDto signInUser(SignInRequestDto signInRequestDto) throws UserNotFoundException,
-            InvalidCredentialsException {
+    public SignInResponseDto signInUser(SignInRequestDto signInRequestDto) {
 
-        User user = userService.signIn(signInRequestDto.getEmail(), signInRequestDto.getPassword());
         SignInResponseDto signInResponseDto = new SignInResponseDto();
-        signInResponseDto.setUser(user);
-        signInResponseDto.setMessage("LogIn Successful");
+        try{
+            User user = userService.signIn(signInRequestDto.getEmail(), signInRequestDto.getPassword());
+            signInResponseDto.setUser(user);
+            signInResponseDto.setResponseStatus(ResponseStatus.SUCCESS);
+        }catch (Exception e){
+            signInResponseDto.setResponseStatus(ResponseStatus.FAILURE);
+        }
         return signInResponseDto;
-
     }
 }

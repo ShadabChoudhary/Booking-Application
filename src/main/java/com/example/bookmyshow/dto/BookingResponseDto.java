@@ -9,4 +9,5 @@ import lombok.Setter;
 @Setter
 public class BookingResponseDto {
     private Booking booking;
+    ResponseStatus responseStatus;
 }

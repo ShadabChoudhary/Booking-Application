@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@Entity(name = "shows") // show is a reserved keyword for JPA since using "shows" for table creation
+@Entity(name = "shows") //show is a reserved keyword for JPA since using "shows" for table creation
 public class Show extends BaseModel{
     @ManyToOne
     private Movie movie;
@@ -20,6 +20,6 @@ public class Show extends BaseModel{
     private Screen screen;
 
     @Enumerated(EnumType.ORDINAL)
-    @ElementCollection//stores the collection of enums creating a separate table
-    private List<Feature> features;
+//    @ElementCollection//stores the collection of enums creating a separate table
+    private Feature feature;
 }

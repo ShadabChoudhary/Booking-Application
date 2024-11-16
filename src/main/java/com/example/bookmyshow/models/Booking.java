@@ -13,6 +13,10 @@ import java.util.List;
 public class Booking extends BaseModel{
     @ManyToOne
     private User user;
+
+    @ManyToOne
+    private Show show;
+
     private Date bookedAt;
 
     @OneToMany

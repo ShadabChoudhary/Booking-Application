@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Service
 public class UserService {
-    private UserRepository userRepository;
+    final UserRepository userRepository;
     final BCryptPasswordEncoder passwordEncoder;
 
     public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
@@ -23,13 +23,11 @@ public class UserService {
     public User signUp(String username, String emailId, String password) throws UserAlreadyExistException {
 
         Optional<User> optionalUser = userRepository.findByEmail(emailId);
-        User user = null;
+        User user = new User();
         if(optionalUser.isEmpty()){
-            user = new User();
             user.setName(username);
             user.setEmail(emailId);
             user.setPassword(passwordEncoder.encode(password));
-
             userRepository.save(user);
         }else{
             throw new UserAlreadyExistException("User Already Exist");

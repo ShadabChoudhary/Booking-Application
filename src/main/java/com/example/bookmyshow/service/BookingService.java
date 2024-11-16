@@ -63,9 +63,11 @@ public class BookingService {
             //changing the status as blocked if seats are available
             for(ShowSeat showSeat : showSeats){
                 showSeat.setSeatStatus(ShowSeatStatus.BLOCKED);
+                showSeatRepository.save(showSeat);
             }
 
             booking.setUser(user);
+            booking.setShow(show);
             booking.setCreatedAt(new Date());
             booking.setShowSeat(showSeats);
             booking.setAmount(priceCalculationService.CalculatePrice(showSeats, show));
