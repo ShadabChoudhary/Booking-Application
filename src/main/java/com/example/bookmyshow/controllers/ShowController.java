@@ -1,7 +1,6 @@
 package com.example.bookmyshow.controllers;
 
 import com.example.bookmyshow.dto.*;
-import com.example.bookmyshow.exceptions.ShowNotFoundException;
 import com.example.bookmyshow.models.Show;
 import com.example.bookmyshow.service.ShowService;
 import org.springframework.stereotype.Controller;
@@ -39,8 +38,8 @@ public class ShowController {
         GetShowResponseDto responseDto = new GetShowResponseDto();
         try{
             Show show = showService.getShow(getShowRequestDto.getShowId());
-            responseDto.setShowId((int) show.getId());
-            responseDto.setMovieName(show.getMovie().getName());
+            responseDto.setShowId(show.getId());
+            responseDto.setMovieName(show.getMovie().getTitle());
             responseDto.setStartTime(show.getStartTime());
             responseDto.setEndTime(show.getEndTime());
             responseDto.setResponseStatus(ResponseStatus.SUCCESS);

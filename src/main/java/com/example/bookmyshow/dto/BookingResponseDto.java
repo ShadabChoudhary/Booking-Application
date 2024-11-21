@@ -1,7 +1,6 @@
 package com.example.bookmyshow.dto;
 
 import com.example.bookmyshow.models.Booking;
-import com.example.bookmyshow.models.BookingStatus;
 import lombok.Getter;
 import lombok.Setter;
 

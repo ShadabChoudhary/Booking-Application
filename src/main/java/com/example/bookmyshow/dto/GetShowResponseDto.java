@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class GetShowResponseDto {
-    private int showId;
+    private Long showId;
     private String movieName;
     private int startTime;
     private int endTime;

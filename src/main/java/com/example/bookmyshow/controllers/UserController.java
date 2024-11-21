@@ -1,9 +1,6 @@
 package com.example.bookmyshow.controllers;
 
 import com.example.bookmyshow.dto.*;
-import com.example.bookmyshow.exceptions.InvalidCredentialsException;
-import com.example.bookmyshow.exceptions.UserAlreadyExistException;
-import com.example.bookmyshow.exceptions.UserNotFoundException;
 import com.example.bookmyshow.models.User;
 import com.example.bookmyshow.service.UserService;
 import org.springframework.stereotype.Controller;
