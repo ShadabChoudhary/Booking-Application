@@ -45,7 +45,7 @@ public class UserService {
         //if email already registered
         User user = userOptional.get();
         if(!passwordEncoder.matches(password, user.getPassword())){
-            throw  new InvalidCredentialsException("Email or Password is incorrect");
+            throw new InvalidCredentialsException("Email or Password is incorrect");
         }
         return user;
     }

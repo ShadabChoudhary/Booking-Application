@@ -1,7 +1,8 @@
 package com.example.bookmyshow.models;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +12,9 @@ import lombok.Setter;
 public class Seat extends BaseModel{
     private int rowVal;
     private int colVal;
-    @ManyToOne
+    private String seatNumber;
+
+    @Enumerated(EnumType.ORDINAL)
     private SeatType seatType;
 
 }

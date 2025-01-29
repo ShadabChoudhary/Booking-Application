@@ -11,7 +11,6 @@ import com.example.bookmyshow.repositories.ShowRepository;
 import com.example.bookmyshow.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class ShowService {

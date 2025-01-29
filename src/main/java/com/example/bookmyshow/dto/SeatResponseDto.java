@@ -5,8 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ScreenResponseDto {
-    private long screenId;
+public class SeatResponseDto {
+    private int seatId;
     private String message;
-    private ResponseStatus status;
+    ResponseStatus status;
 }
